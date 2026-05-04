@@ -154,7 +154,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - VERSION=docker
-      - PLEX_CLAIM=claim-_5zkrF8kwSnXZhaYzbrx #optional
+      - PLEX_CLAIM=${PLEX_CLAIM} #optional
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.plex.rule=Host(`plex.${MY_DOMAIN}`)'

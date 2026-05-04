@@ -154,7 +154,11 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - VERSION=docker
-      - PLEX_CLAIM= #optional
+      - PLEX_CLAIM=claim-_5zkrF8kwSnXZhaYzbrx #optional
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.plex.rule=Host(`plex.${MY_DOMAIN}`)'
+      - 'traefik.http.routers.plex.entryPoints=websecure'
     volumes:
       - /path/to/plex/library:/config
       - /path/to/tvseries:/tv

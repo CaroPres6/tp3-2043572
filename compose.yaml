@@ -180,6 +180,7 @@ services:
       JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
     networks:
       - blogverse-network
+      - cloud
     ports:
       - "${BACKEND_PORT:-3000}:3000"
     depends_on:
@@ -196,10 +197,15 @@ services:
     restart: unless-stopped
     networks:
       - blogverse-network
+      - cloud
     ports:
       - "${FRONTEND_PORT:-8080}:80"
     depends_on:
       - backend
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.blogverse.rule=Host(`blogverse.${MY_DOMAIN}`)'
+      - 'traefik.http.routers.blogverse.entryPoints=websecure'
 # Définition des volumes des conteneurs (portainer et bd)
 volumes:
     portainer_data:

@@ -155,6 +155,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - blogverse-network
+      - cloud
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
